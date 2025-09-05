@@ -2,92 +2,118 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Inbar Amit </title>
+  <title>Inbar Amit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
+    /* Base */
     body {
       font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       margin: 0;
-      padding: 0;
       color: #111;
       background: #fff;
     }
+    a { color: #0645ad; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Split layout */
     .container {
       display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 40px;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 32px 20px;
+      grid-template-columns: 1fr 1fr;   /* 50/50 split like the reference site */
+      min-height: 100vh;                /* fill the viewport height */
+    }
+
+    /* Left: full-bleed photo */
+    .photo {
+      background: #f5f5f5;
+      overflow: hidden;
+    }
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;                /* make the image fill the left side nicely */
+      display: block;
+    }
+
+    /* Right: content */
+    .content {
+      padding: 40px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      max-width: 720px;
     }
     header h1 {
       margin: 0 0 12px;
-      font-size: 26px;
-    }
-    header img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
+      font-size: 28px;
+      line-height: 1.2;
     }
     section { margin-bottom: 32px; }
-    h2 { font-size: 22px; margin-bottom: 8px; }
-    ul { padding-left: 20px; }
+    h2 { font-size: 22px; margin: 0 0 8px; }
+    ul { padding-left: 20px; margin: 8px 0 0; }
     details { margin-top: 6px; padding-left: 14px; color: #555; }
     summary { cursor: pointer; font-weight: 500; }
-    footer { text-align: center; margin: 40px 0 20px; color: #777; font-size: 14px; }
-    a { color: #0645ad; text-decoration: none; }
-    a:hover { text-decoration: underline; }
+
+    footer { margin: auto 0 24px; color: #777; font-size: 14px; }
+
+    /* Mobile */
     @media (max-width: 768px) {
       .container { grid-template-columns: 1fr; }
-      header { text-align: center; }
+      .photo img { height: auto; max-height: 420px; }
+      .content { padding: 24px 18px; }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- LEFT COLUMN -->
-    <main>
-      <section id="about">
-        <p><strong>Welcome!</strong></p>
-        <p>
-          I am a microeconomic theorist with a focus on information economics. 
-          I am currently a DPhil (PhD) student at the University of Oxford. 
-          Here is my <a href="fhttps://www.dropbox.com/scl/fi/ki4rr2aclfr0vrzlwyft5/Inbar_Amit_CV.pdf?rlkey=cvc97tu89ic0tc1poa7l8r1p1&dl=0" target="_blank">CV</a>.
-        </p>
-      </section>
+    <!-- LEFT: PHOTO -->
+    <div class="photo">
+      <img src="images/Inbar_photo.jpg" alt="Portrait of Inbar Amit">
+    </div>
 
-      <section id="publications">
-        <h2>Publication</h2>
-        <ul>
-          <li>
-            <a href="https://www.nathan-barker.com/_files/ugd/6e7d59_072f0fddd7154d0aa8fa8697db311c45.pdf" target="_blank" rel="noopener">
-              Flexibility versus Performance: The Determinants of Labor Contracts in Nairobi, Kenya
-            </a>
-            <details>
-              <summary>Abstract</summary>
-              <p>
-                Employment in developing countries is often short and disrupted, generating costly search
-                and limiting the potential for workers to accumulate firm-specific human capital.
-                [Full abstract text goes here...]
-              </p>
-            </details>
-          </li>
-        </ul>
-      </section>
-    </main>
-
-    <!-- RIGHT COLUMN -->
-    <aside>
+    <!-- RIGHT: CONTENT -->
+    <div class="content">
       <header>
         <h1>Inbar Amit</h1>
-       <img src="images/Inbar_photo.jpg">
       </header>
-    </aside>
-  </div>
 
-  <footer>
-    © <span id="year"></span> Inbar Amit
-  </footer>
+      <main>
+        <section id="about">
+          <p><strong>Welcome!</strong></p>
+          <p>
+            I am a microeconomic theorist with a focus on information economics.
+            I am currently a DPhil (PhD) student at the University of Oxford.
+            Here is my
+            <a href="https://www.dropbox.com/scl/fi/ki4rr2aclfr0vrzlwyft5/Inbar_Amit_CV.pdf?rlkey=cvc97tu89ic0tc1poa7l8r1p1&dl=0"
+               target="_blank" rel="noopener">CV</a>.
+          </p>
+        </section>
+
+        <section id="publications">
+          <h2>Publication</h2>
+          <ul>
+            <li>
+              <a href="https://www.nathan-barker.com/_files/ugd/6e7d59_072f0fddd7154d0aa8fa8697db311c45.pdf"
+                 target="_blank" rel="noopener">
+                Flexibility versus Performance: The Determinants of Labor Contracts in Nairobi, Kenya
+              </a>
+              <details>
+                <summary>Abstract</summary>
+                <p>
+                  Employment in developing countries is often short and disrupted, generating costly search
+                  and limiting the potential for workers to accumulate firm-specific human capital.
+                  [Full abstract text goes here…]
+                </p>
+              </details>
+            </li>
+          </ul>
+        </section>
+      </main>
+
+      <footer>
+        © <span id="year"></span> Inbar Amit
+      </footer>
+    </div>
+  </div>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
