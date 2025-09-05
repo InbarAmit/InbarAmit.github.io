@@ -7,9 +7,9 @@
   <style>
     /* --- Sizing variables --- */
     :root {
-      --outer-side-margin: 2.5in; /* ≈3 inch margins on left/right edges */
+      --outer-side-margin: 3in; /* ≈3 inch margins on left/right edges */
       --inner-padding: 1in;     /* ≈1 inch inner padding in each column */
-      --max-text-width: 800px;
+      --max-text-width: 500px;
     }
 
     body {
@@ -31,7 +31,7 @@
     /* Two columns */
     .container {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 2fr;
       min-height: 100vh;
       width: 100%;
     }
@@ -42,36 +42,29 @@
       padding: var(--inner-padding);
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       justify-content: flex-start; /* align to top */
-      text-align: center;
-      gap: 0;
+      text-align: left;
+      padding-block-start: 0;
+      gap: 16px;
       /* Enable container query units so we can size the image to ~50% of this column */
       container-type: size;
     }
     .photo h1 {
-      margin: 0;
+      margin: 0 0 8px;
       font-size: 28px;
     }
 
     /* Image sizing: default fallback first */
     .photo img {
       display: block;
-      width: 80%;          /* ~50% of column width */
-      height: auto;        /* keep aspect ratio */
-      max-height: 80vh;    /* ~50% of viewport height as a fallback */
+      max-width: 100%;   /* never overflow the column */
+      width: 100%;       /* always fit the column's content box (respects padding) */
+      height: auto;      /* preserve aspect ratio */
       border-radius: 8px;
     }
     /* If container query units are supported, size to ~50% of the column in BOTH directions */
-    @supports (width: 1cqw) {
-      .photo img {
-        width: auto;          /* override fallback */
-        height: auto;         /* override fallback */
-        inline-size: 50cqw;   /* ~50% of column width */
-        block-size: 50cqh;    /* ~50% of column height */
-        object-fit: contain;  /* preserve aspect ratio within that box */
-        max-height: none;     /* not needed with cqh */
-      }
+    /* container-query sizing removed: fit-to-width works for any resolution */
     }
 
     /* Right: content */
@@ -106,7 +99,7 @@
       .container { grid-template-columns: 1fr; }
       .photo, .content { padding: 24px 18px; }
       .photo { container-type: normal; }
-      .photo img { width: min(80%, 420px); height: auto; max-height: none; }
+      .photo img { width: 100%; height: auto; max-height: none; }
     }
   </style>
 </head>
@@ -177,3 +170,4 @@
   </script>
 </body>
 </html>
+
