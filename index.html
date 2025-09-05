@@ -5,6 +5,13 @@
   <title>Inbar Amit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
+    /* --- Sizing variables --- */
+    :root {
+      --outer-side-margin: 3in; /* ≈3 inch margins on left/right edges */
+      --inner-padding: 1in;     /* ≈1 inch inner padding in each column */
+      --max-text-width: 640px;
+    }
+
     body {
       font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       margin: 0;
@@ -14,53 +21,93 @@
     a { color: #0645ad; text-decoration: none; }
     a:hover { text-decoration: underline; }
 
-    :root {
-  --outer-side-margin: 3in;  /* ≈3 inches on left/right edges */
-  --inner-padding: 1in;      /* ≈1 inch inside each column */
-}
+    /* Outer container with fixed physical margins */
+    .outer {
+      display: flex;
+      justify-content: center;
+      padding-inline: var(--outer-side-margin);
+    }
 
-/* (unchanged) body, links, etc. */
+    /* Two columns */
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+      width: 100%;
+    }
 
-/* Outer container with wide margins */
-.outer {
-  display: flex;
-  justify-content: center;
-  /* was 384px (~4in) on each side */
-  padding-inline: var(--outer-side-margin);
-}
+    /* Left: name + photo */
+    .photo {
+      background: #fff;
+      padding: var(--inner-padding);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start; /* align to top */
+      text-align: center;
+      gap: 16px;
+      /* Enable container query units so we can size the image to ~50% of this column */
+      container-type: size;
+    }
+    .photo h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+    }
 
-/* Left: name + photo */
-.photo {
-  background: #fff;
-  /* was 40px 20px */
-  padding: var(--inner-padding);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  text-align: center;
-}
+    /* Image sizing: default fallback first */
+    .photo img {
+      display: block;
+      width: 50%;          /* ~50% of column width */
+      height: auto;        /* keep aspect ratio */
+      max-height: 50vh;    /* ~50% of viewport height as a fallback */
+      border-radius: 8px;
+    }
+    /* If container query units are supported, size to ~50% of the column in BOTH directions */
+    @supports (width: 1cqw) {
+      .photo img {
+        width: auto;          /* override fallback */
+        height: auto;         /* override fallback */
+        inline-size: 50cqw;   /* ~50% of column width */
+        block-size: 50cqh;    /* ~50% of column height */
+        object-fit: contain;  /* preserve aspect ratio within that box */
+        max-height: none;     /* not needed with cqh */
+      }
+    }
 
-/* Right: content */
-.content {
-  background: #fff;
-  /* was 40px */
-  padding: var(--inner-padding);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  text-align: center;
-}
+    /* Right: content */
+    .content {
+      background: #fff;
+      padding: var(--inner-padding);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start; /* align to top */
+      text-align: center;
+    }
+    section { margin-bottom: 32px; max-width: var(--max-text-width); }
+    h2 { font-size: 22px; margin: 0 0 8px; }
+    ul { padding-left: 0; list-style-position: inside; margin: 8px 0 0; }
+    li em {
+      display: block;
+      color: #555;
+      font-size: 0.95em;
+      margin-top: 2px;
+    }
+    details { margin-top: 6px; color: #555; text-align: left; max-width: 600px; }
+    summary { cursor: pointer; font-weight: 500; }
 
-/* Mobile / smaller screens — keep margins sensible */
-@media (max-width: 1200px) {
-  .outer { padding-inline: 40px; } /* keep your existing compact margins */
-}
-@media (max-width: 768px) {
-  .container { grid-template-columns: 1fr; }
-  .photo, .content { padding: 24px 18px; } /* keep your existing compact inner padding */
-}
+    footer { margin-top: 24px; color: #777; font-size: 14px; text-align: center; }
+
+    /* Mobile / smaller screens */
+    @media (max-width: 1200px) {
+      .outer { padding-inline: 40px; } /* keep things readable */
+    }
+    @media (max-width: 768px) {
+      .container { grid-template-columns: 1fr; }
+      .photo, .content { padding: 24px 18px; }
+      .photo { container-type: normal; }
+      .photo img { width: min(80%, 420px); height: auto; max-height: none; }
+    }
   </style>
 </head>
 <body>
@@ -81,8 +128,7 @@
               I am an applied microeconomist with a focus on education and development economics.
               I am currently a DPhil (PhD) student at the University of Oxford and a Research Scholar at the Institute for Fiscal Studies.
               Here is my
-              <a href="https://www.dropbox.com/scl/fi/ki4rr2aclfr0vrzlwyft5/Inbar_Amit_CV.pdf?rlkey=cvc97tu89ic0tc1poa7l8r1p1&dl=0"
-                 target="_blank" rel="noopener">CV</a>.
+              <a href="https://www.dropbox.com/scl/fi/ki4rr2aclfr0vrzlwyft5/Inbar_Amit_CV.pdf?rlkey=cvc97tu89ic0tc1poa7l8r1p1&dl=0" target="_blank" rel="noopener">CV</a>.
             </p>
           </section>
 
@@ -90,8 +136,7 @@
             <h2>Working Papers</h2>
             <ul>
               <li>
-                <a href="https://www.nathan-barker.com/_files/ugd/6e7d59_072f0fddd7154d0aa8fa8697db311c45.pdf"
-                   target="_blank" rel="noopener">
+                <a href="https://www.nathan-barker.com/_files/ugd/6e7d59_072f0fddd7154d0aa8fa8697db311c45.pdf" target="_blank" rel="noopener">
                   Flexibility versus Performance: The Determinants of Labor Contracts in Nairobi, Kenya
                 </a>
                 <br>
@@ -113,9 +158,7 @@
             <ul>
               <li>
                 Understanding Barriers to Youth Employment in Kenya
-                  <br>
                 <em>with Nathan Barker, Alison Andrew, Rob Garlick and Carol Nekesa</em>
-                  <br>
                 <em>Fieldwork in Progress</em>
               </li>
             </ul>
