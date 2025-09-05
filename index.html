@@ -14,75 +14,53 @@
     a { color: #0645ad; text-decoration: none; }
     a:hover { text-decoration: underline; }
 
-    /* Outer container with wide margins */
-    .outer {
-      display: flex;
-      justify-content: center;
-      padding-left: 3504px;  /* ~4 inches */
-      padding-right: 350px; /* ~4 inches */
-    }
+    :root {
+  --outer-side-margin: 3in;  /* ≈3 inches on left/right edges */
+  --inner-padding: 1in;      /* ≈1 inch inside each column */
+}
 
-    /* Two columns */
-    .container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 100vh;
-      width: 100%;
-    }
+/* (unchanged) body, links, etc. */
 
-    /* Left: name + photo */
-    .photo {
-      background: #fff;         /* white background */
-      padding: 40px 20px;       /* inner padding */
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start; /* align to top */
-      text-align: center;
-    }
-    .photo h1 {
-      margin: 0 0 20px;
-      font-size: 28px;
-    }
-    .photo img {
-      width: 100%;
-      max-width: 350px;
-      height: auto;
-      border-radius: 8px;
-    }
+/* Outer container with wide margins */
+.outer {
+  display: flex;
+  justify-content: center;
+  /* was 384px (~4in) on each side */
+  padding-inline: var(--outer-side-margin);
+}
 
-    /* Right: content */
-    .content {
-      background: #fff;
-      padding: 40px;            /* inner margins inside column */
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start; /* align to top */
-      text-align: center;
-    }
-    section { margin-bottom: 32px; max-width: 640px; }
-    h2 { font-size: 22px; margin: 0 0 8px; }
-    ul { padding-left: 0; list-style-position: inside; margin: 8px 0 0; }
-    li em {
-      display: block;
-      color: #555;
-      font-size: 0.95em;
-      margin-top: 2px;
-    }
-    details { margin-top: 6px; color: #555; text-align: left; max-width: 600px; }
-    summary { cursor: pointer; font-weight: 500; }
+/* Left: name + photo */
+.photo {
+  background: #fff;
+  /* was 40px 20px */
+  padding: var(--inner-padding);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+}
 
-    footer { margin-top: 24px; color: #777; font-size: 14px; text-align: center; }
+/* Right: content */
+.content {
+  background: #fff;
+  /* was 40px */
+  padding: var(--inner-padding);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+}
 
-    /* Mobile */
-    @media (max-width: 1200px) {
-      .outer { padding-left: 40px; padding-right: 40px; }
-    }
-    @media (max-width: 768px) {
-      .container { grid-template-columns: 1fr; }
-      .photo, .content { padding: 24px 18px; }
-    }
+/* Mobile / smaller screens — keep margins sensible */
+@media (max-width: 1200px) {
+  .outer { padding-inline: 40px; } /* keep your existing compact margins */
+}
+@media (max-width: 768px) {
+  .container { grid-template-columns: 1fr; }
+  .photo, .content { padding: 24px 18px; } /* keep your existing compact inner padding */
+}
   </style>
 </head>
 <body>
