@@ -18,11 +18,11 @@
     .outer {
       display: flex;
       justify-content: center;
-      padding-left: 384px;  /* ~4 inches left */
-      padding-right: 384px; /* ~4 inches right */
+      padding-left: 3504px;  /* ~4 inches */
+      padding-right: 350px; /* ~4 inches */
     }
 
-    /* Two columns inside */
+    /* Two columns */
     .container {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -32,12 +32,12 @@
 
     /* Left: name + photo */
     .photo {
-      background: #f5f5f5;
-      padding: 40px 20px;
+      background: #fff;         /* white background */
+      padding: 40px 20px;       /* inner padding */
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center; /* vertical centering */
+      justify-content: flex-start; /* align to top */
       text-align: center;
     }
     .photo h1 {
@@ -53,14 +53,15 @@
 
     /* Right: content */
     .content {
-      padding: 40px 28px;
+      background: #fff;
+      padding: 40px;            /* inner margins inside column */
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center; /* vertical centering */
+      justify-content: flex-start; /* align to top */
       text-align: center;
     }
-    section { margin-bottom: 32px; }
+    section { margin-bottom: 32px; max-width: 640px; }
     h2 { font-size: 22px; margin: 0 0 8px; }
     ul { padding-left: 0; list-style-position: inside; margin: 8px 0 0; }
     li em {
@@ -74,7 +75,7 @@
 
     footer { margin-top: 24px; color: #777; font-size: 14px; text-align: center; }
 
-    /* Mobile adjustments */
+    /* Mobile */
     @media (max-width: 1200px) {
       .outer { padding-left: 40px; padding-right: 40px; }
     }
@@ -85,71 +86,70 @@
   </style>
 </head>
 <body>
-    <div class="outer">
-  <div class="container">
-    <!-- LEFT: PHOTO -->
-    <div class="photo">
-       <h1>Inbar Amit</h1>
-      <img src="images/Inbar_photo.jpg" alt="Portrait of Inbar Amit">
-    </div>
+  <div class="outer">
+    <div class="container">
+      <!-- LEFT: NAME + PHOTO -->
+      <div class="photo">
+        <h1>Inbar Amit</h1>
+        <img src="images/Inbar_photo.jpg" alt="Portrait of Inbar Amit">
+      </div>
 
-    <!-- RIGHT: CONTENT -->
-    
+      <!-- RIGHT: CONTENT -->
+      <div class="content">
+        <main>
+          <section id="about">
+            <p><strong>Welcome!</strong></p>
+            <p>
+              I am an applied microeconomist with a focus on education and development economics.
+              I am currently a DPhil (PhD) student at the University of Oxford and a Research Scholar at the Institute for Fiscal Studies.
+              Here is my
+              <a href="https://www.dropbox.com/scl/fi/ki4rr2aclfr0vrzlwyft5/Inbar_Amit_CV.pdf?rlkey=cvc97tu89ic0tc1poa7l8r1p1&dl=0"
+                 target="_blank" rel="noopener">CV</a>.
+            </p>
+          </section>
 
-      <main>
-        <section id="about">
-          <p><strong>Welcome!</strong></p>
-          <p>
-            I am an applied microeconomist with a focus on education and development economists. 
-            I am currently a DPhil (PhD) student at the University of Oxford and a Research Scholar at the Institute for Fiscal Studies. 
-            Here is my
-            <a href="https://www.dropbox.com/scl/fi/ki4rr2aclfr0vrzlwyft5/Inbar_Amit_CV.pdf?rlkey=cvc97tu89ic0tc1poa7l8r1p1&dl=0"
-               target="_blank" rel="noopener">CV</a>.
-          </p>
-        </section>
+          <section id="working-papers">
+            <h2>Working Papers</h2>
+            <ul>
+              <li>
+                <a href="https://www.nathan-barker.com/_files/ugd/6e7d59_072f0fddd7154d0aa8fa8697db311c45.pdf"
+                   target="_blank" rel="noopener">
+                  Flexibility versus Performance: The Determinants of Labor Contracts in Nairobi, Kenya
+                </a>
+                <br>
+                <em>with Nathan Barker, Alison Andrew, Rob Garlick and Carol Nekesa</em>
+                <details>
+                  <summary>Abstract</summary>
+                  <p>
+                    Employment in developing countries is often short and disrupted, generating costly search
+                    and limiting the potential for workers to accumulate firm-specific human capital.
+                    [Full abstract text goes here…]
+                  </p>
+                </details>
+              </li>
+            </ul>
+          </section>
 
-        <section id="working papers">
-          <h2>Working Papers</h2>
-          <ul>
-            <li>
-              <a href="https://www.nathan-barker.com/_files/ugd/6e7d59_072f0fddd7154d0aa8fa8697db311c45.pdf"
-                 target="_blank" rel="noopener">
-                Flexibility versus Performance: The Determinants of Labor Contracts in Nairobi, Kenya
-              </a>
+          <section id="work-in-progress">
+            <h2>Work in Progress</h2>
+            <ul>
+              <li>
+                Understanding Barriers to Youth Employment in Kenya
                   <br>
-            <em>with Nathan Barker, Alison Andrew, Rob Garlick and Carol Nekesa</em>   
-              <details>
-                <summary>Abstract</summary>
-                <p>
-                  Employment in developing countries is often short and disrupted, generating costly search
-                  and limiting the potential for workers to accumulate firm-specific human capital.
-                  [Full abstract text goes here…]
-                </p>
-              </details>
-            </li>
-          </ul>
-        </section>
+                <em>with Nathan Barker, Alison Andrew, Rob Garlick and Carol Nekesa</em>
+                  <br>
+                <em>Fieldwork in Progress</em>
+              </li>
+            </ul>
+          </section>
+        </main>
 
-        <section id="Work-in-progress">
-          <h2>Work in Progress</h2>
-          <ul>
-            <li>
-              <a>
-               Understanding Barriers to Youth Employment in Kenya 
-              </a>
-              <em>with Nathan Barker, Alison Andrew, Rob Garlick and Carol Nekesa</em>   
-               <em>Fieldwork in Progress</em>   
-            </li>
-          </ul>
-        </section>
-      </main>
-
-      <footer>
-        © <span id="year"></span> Inbar Amit
-      </footer>
+        <footer>
+          © <span id="year"></span> Inbar Amit
+        </footer>
+      </div>
     </div>
   </div>
-</div>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
