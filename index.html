@@ -2,66 +2,88 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Inbar Amit — Academic Homepage</title>
+  <title>Inbar Amit </title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
       font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 24px;
+      margin: 0;
+      padding: 0;
       color: #111;
       background: #fff;
     }
-    header h1 { margin: 0; font-size: 28px; }
-    header img {
-      max-width: 180px;
-      border-radius: 8px;
-      margin-top: 12px;
+    .container {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 32px 20px;
     }
-    section { margin-top: 32px; }
+    header h1 {
+      margin: 0 0 12px;
+      font-size: 26px;
+    }
+    header img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    section { margin-bottom: 32px; }
     h2 { font-size: 22px; margin-bottom: 8px; }
     ul { padding-left: 20px; }
     details { margin-top: 6px; padding-left: 14px; color: #555; }
     summary { cursor: pointer; font-weight: 500; }
-    footer { margin-top: 40px; color: #777; font-size: 14px; }
+    footer { text-align: center; margin: 40px 0 20px; color: #777; font-size: 14px; }
     a { color: #0645ad; text-decoration: none; }
     a:hover { text-decoration: underline; }
+    @media (max-width: 768px) {
+      .container { grid-template-columns: 1fr; }
+      header { text-align: center; }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Inbar Amit</h1>
-    <img src="https://www.dropbox.com/scl/fi/1e2wi1unrq9uhacou6un9/2021-06-Amit_Inbar-David-Fisher-01.jpg?rlkey=1zep6fx2jgitny6j1y9d6w6ys&dl=0" alt="Inbar Amit portrait">
-  </header>
+  <div class="container">
+    <!-- LEFT COLUMN -->
+    <main>
+      <section id="about">
+        <p><strong>Welcome!</strong></p>
+        <p>
+          I am a microeconomic theorist with a focus on information economics. 
+          I am currently a DPhil (PhD) student at the University of Oxford. 
+          Here is my <a href="fhttps://www.dropbox.com/scl/fi/ki4rr2aclfr0vrzlwyft5/Inbar_Amit_CV.pdf?rlkey=cvc97tu89ic0tc1poa7l8r1p1&dl=0" target="_blank">CV</a>.
+        </p>
+      </section>
 
-  <section id="about">
-    <p><strong>Welcome!</strong></p>
-    <p>
-      I am a microeconomic theorist with a focus on information economics. 
-      I am currently a DPhil (PhD) student at the University of Oxford. 
-      Here is my <a href="https://www.dropbox.com/scl/fi/ki4rr2aclfr0vrzlwyft5/Inbar_Amit_CV.pdf?rlkey=cvc97tu89ic0tc1poa7l8r1p1&dl=0" target="_blank">CV</a>.
-    </p>
-  </section>
+      <section id="publications">
+        <h2>Publication</h2>
+        <ul>
+          <li>
+            <a href="https://www.nathan-barker.com/_files/ugd/6e7d59_072f0fddd7154d0aa8fa8697db311c45.pdf" target="_blank" rel="noopener">
+              Flexibility versus Performance: The Determinants of Labor Contracts in Nairobi, Kenya
+            </a>
+            <details>
+              <summary>Abstract</summary>
+              <p>
+                Employment in developing countries is often short and disrupted, generating costly search
+                and limiting the potential for workers to accumulate firm-specific human capital.
+                [Full abstract text goes here...]
+              </p>
+            </details>
+          </li>
+        </ul>
+      </section>
+    </main>
 
-  <section id="publications">
-    <h2>Publication</h2>
-    <ul>
-      <li>
-        <a href="https://www.nathan-barker.com/_files/ugd/6e7d59_072f0fddd7154d0aa8fa8697db311c45.pdf" target="_blank" rel="noopener">
-          Flexibility versus Performance: The Determinants of Labor Contracts in Nairobi, Kenya
-        </a>
-        <details>
-          <summary>Abstract</summary>
-          <p>
-            Employment in developing countries is often short and disrupted, generating costly search
-            and limiting the potential for workers to accumulate firm-specific human capital.
-            [Full abstract text goes here...]
-          </p>
-        </details>
-      </li>
-    </ul>
-  </section>
+    <!-- RIGHT COLUMN -->
+    <aside>
+      <header>
+        <h1>Inbar Amit</h1>
+       <img src="images/Inbar_photo.jpg">
+      </header>
+    </aside>
+  </div>
 
   <footer>
     © <span id="year"></span> Inbar Amit
@@ -71,8 +93,4 @@
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
-</html>
-
-    <script src="javascripts/scale.fix.js"></script>
-  </body>
 </html>
