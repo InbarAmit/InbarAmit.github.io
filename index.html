@@ -10,7 +10,7 @@
     :root {
       --outer-side-margin: 1in; /* ≈3 inch margins on left/right edges */
       --inner-padding: 1in;     /* ≈1 inch inner padding in each column */
-      --max-text-width: 72ch;
+      --max-text-width: 50ch;
     }
 
     body {
@@ -60,12 +60,11 @@
 
     /* Image sizing: default fallback first */
     .photo img {
-      display: block;
-      max-width: 100%;   /* never overflow the column */
-      width: 100%;       /* always fit the column's content box (respects padding) */
-      height: auto;      /* preserve aspect ratio */
-      border-radius: 8px;
-    }
+  width: 50%;     /* half the left column’s content width */
+  height: auto;   /* preserve aspect ratio */
+  max-width: 100%;
+  display: block;
+}
     /* If container query units are supported, size to ~50% of the column in BOTH directions */
     /* container-query sizing removed: fit-to-width works for any resolution */
 
