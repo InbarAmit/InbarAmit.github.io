@@ -9,8 +9,8 @@
     /* --- Sizing variables --- */
     :root {
       --outer-side-margin: 1in; /* ≈3 inch margins on left/right edges */
-      --inner-padding: 1in;     /* ≈1 inch inner padding in each column */
-      --max-text-width: 50ch;
+      --inner-padding: 0;     /* ≈1 inch inner padding in each column */
+      --max-text-width: 45ch;
     }
 
     body {
@@ -60,10 +60,12 @@
 
     /* Image sizing: default fallback first */
     .photo img {
-  width: 50%;     /* half the left column’s content width */
+  width: 60%;     /* half the left column’s content width */
   height: auto;   /* preserve aspect ratio */
   max-width: 100%;
   display: block;
+       align-self: center; /* center horizontally in the flex column */
+      margin-inline: auto;/* fallback centering */
 }
     /* If container query units are supported, size to ~50% of the column in BOTH directions */
     /* container-query sizing removed: fit-to-width works for any resolution */
