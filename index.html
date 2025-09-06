@@ -5,15 +5,16 @@
   <title>Inbar Amit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
+    /* Computer Modern (CMU Serif) webfont */
     /* --- Sizing variables --- */
     :root {
       --outer-side-margin: 1in; /* ≈3 inch margins on left/right edges */
       --inner-padding: 1in;     /* ≈1 inch inner padding in each column */
-      --max-text-width: 450px;
+      --max-text-width: 72ch;
     }
 
     body {
-      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      font: 17px/1.55 Georgia, 'Times New Roman', Times, 'Palatino Linotype', 'Book Antiqua', serif;
       margin: 0;
       color: #111;
       background: #fff;
@@ -42,19 +43,19 @@
       padding: var(--inner-padding);
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       justify-content: flex-start; /* align to top */
-      text-align: center;
+      text-align: left;
       padding-block-start: 0;
       gap: 16px;
       /* Enable container query units so we can size the image to ~50% of this column */
       container-type: size;
     }
     .photo h1 {
-        align-items: center;
-        text-align: center;
       margin: 0 0 8px;
       font-size: 28px;
+      text-align: center;   /* center the name within the left column */
+      align-self: stretch;  /* ensure it spans full column width in flex layout */
     }
 
     /* Image sizing: default fallback first */
@@ -67,7 +68,6 @@
     }
     /* If container query units are supported, size to ~50% of the column in BOTH directions */
     /* container-query sizing removed: fit-to-width works for any resolution */
-    }
 
     /* Right: content */
     .content {
@@ -75,13 +75,15 @@
       padding: var(--inner-padding);
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       justify-content: flex-start; /* align to top */
-      text-align: center;
+      text-align: left;
     }
     section { margin-bottom: 32px; max-width: var(--max-text-width); }
-    h2 { font-size: 22px; margin: 0 0 8px; }
-    ul { padding-left: 0; list-style-position: inside; margin: 8px 0 0; }
+    h2 { font-size: 22px; margin: 0 0 16px; font-weight: 700; }
+    /* Bold titles in lists */
+    ul li > a { font-weight: 700; }
+    ul { padding-left: 0; list-style: none; margin: 8px 0 0; }
     li em {
       display: block;
       color: #555;
@@ -90,6 +92,16 @@
     }
     details { margin-top: 6px; color: #555; text-align: left; max-width: 600px; }
     summary { cursor: pointer; font-weight: 500; }
+
+    /* LaTeX-like paragraphing */
+    p { margin: 0 0 1em; text-indent: 0; }
+    /* removed first-paragraph indentation */
+
+    /* Hyphenation like TeX */
+    p, li { -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto; }
+
+    /* Typewriter / code look (if needed later) */
+    code, kbd, samp, pre { font-family: 'CMU Typewriter Text', 'CMU Typewriter', 'Computer Modern Typewriter', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.95em; }
 
     footer { margin-top: 24px; color: #777; font-size: 14px; text-align: center; }
 
@@ -139,21 +151,9 @@
                 <details>
                   <summary>Abstract</summary>
                   <p>
-                    Employment in developing countries is often short and disrupted, generating costly search and limiting the potential 
-                    for workers to accumulate firm-specific human capital. We study the incentives guiding firms' use of short-term relative 
-                    to long-term contracts in Nairobi, Kenya, using novel survey data on firms’ hiring and contracting practices,
-                    and hypothetical vignettes measuring their beliefs and preferences. Our key finding is that the use of short-term labor 
-                    is governed by a trade-off between managing demand variation versus minimizing adjustment costs and incentivizing worker 
-                    performance. We first document that firms face considerable variation in demand for goods and services across time,
-                    much of which they pass on to workers through short-term contracts; higher demand variation is associated with a 
-                    greater use of short-term labor. Second, we show that bringing on short-term workers involves adjustment costs: 
-                    it takes time searching for, hiring, and on-boarding workers, potentially offsetting the gains from flexibility. 
-                    We show both that median adjustment costs are low, making short-term contracts feasible for many hires, 
-                    but that hires with greater adjustment costs are more likely to be on long-term contracts. 
-                    Finally, we show that firms believe contract type incentivizes worker performance: 
-                    the same worker is expected to perform better when hired on a long-term basis.
-                    We incorporate these features---variation in demand, on-boarding costs, and incentives---into a model of firm hiring, 
-                    through which to interpret contract choice and turnover in low-income countries. 
+                    Employment in developing countries is often short and disrupted, generating costly search
+                    and limiting the potential for workers to accumulate firm-specific human capital.
+                    [Full abstract text goes here…]
                   </p>
                 </details>
               </li>
@@ -164,7 +164,7 @@
             <h2>Work in Progress</h2>
             <ul>
               <li>
-                Understanding Barriers to Youth Employment in Kenya
+                <strong>Understanding Barriers to Youth Employment in Kenya</strong>
                 <em>with Nathan Barker, Alison Andrew, Rob Garlick and Carol Nekesa</em>
                 <em>Fieldwork in Progress</em>
               </li>
