@@ -94,14 +94,8 @@
   text-decoration: underline;
 }
 
-    .details{
-  margin-bottom: 1.5em;  /* Adds space below each details block */
-  margin-top: 0.5em;     /* Optional: space above each details block */
-}
-
-.summary{
-  margin-bottom: 0.5em;  /* Adds space below the summary text */
-  display: list-item;    /* Helps keep native disclosure triangle; optional */
+   details > *:not(summary):first-child {
+  margin-top: 0.8em;
 }
 
 
@@ -131,7 +125,7 @@
   <div class="main">
     <div class="left">
       <!-- LEFT: NAME + PHOTO + SOCIALS (sticky) -->
-        <h1  style="margin-top: 2em;" >Inbar Amit</h1>
+        <h1  style="margin-top: 1em;" >Inbar Amit</h1>
        <img src="images/Inbar_photo.jpg" alt="Portrait of Inbar Amit">
        <div class="socials">
   <div><strong>Email:</strong> <a href="mailto:inbar.amit@economics.ox.ac.uk">inbar.amit@economics.ox.ac.uk</a></div>
