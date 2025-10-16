@@ -6,16 +6,21 @@
   <style>
     :root {
       --outer-side-margin: 1in;
-      --inner-padding: 1in;
       --max-text-width: 45ch;
     }
 
-    body {
-      font: 17px/1.55 Georgia, 'Times New Roman', Times, 'Palatino Linotype', 'Book Antiqua', serif;
+    /* global font for entire site */
+    html, body {
+      font-family: Georgia, 'Times New Roman', Times, 'Palatino Linotype', 'Book Antiqua', serif;
+      font-size: 17px;
+      line-height: 1.55;
       margin: 0;
       color: #111;
       background: #fff;
     }
+    /* ensure all elements inherit the global font */
+    *, *::before, *::after { font-family: inherit; }
+
     a { color: #0645ad; text-decoration: none; }
     a:hover { text-decoration: underline; }
 
@@ -23,26 +28,30 @@
       display: flex;
       justify-content: center;
       padding-inline: var(--outer-side-margin);
-      padding-block-start: 1in;
+      padding-block-start: 1in; /* top offset for both columns */
     }
 
     .container {
       display: grid;
       grid-template-columns: 1fr 1fr;
+      align-items: start; /* prevents vertical stretching so sticky works */
       min-height: 100vh;
       width: 100%;
     }
 
     .photo {
+      position: -webkit-sticky;
       position: sticky;
-      background: #fff;
-      padding: 0;
+      top: 1in;           /* anchor sticky to match outer top offset */
+      align-self: start;  /* avoid stretching in the grid cell */
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-start;
-      text-align: left;
-      gap: 16px;
+      align-items: center;
+      gap: 12px;
+      background: #fff;
+      padding: 0;
+      z-index: 2;
+      height: fit-content; /* ensure .photo height matches its contents */
     }
     .photo h1 {
       margin: 0 0 8px;
@@ -51,14 +60,27 @@
       align-self: stretch;
     }
 
-    /* Stable image sizing: fixed visual size on desktop, responsive on small screens */
+    /* image size (adjust width to taste) */
     .photo img {
       display: block;
-      width: 200px;
+      width: 350px;
       height: auto;
       max-width: 100%;
-      align-self: center;
-      margin-inline: auto;
+    }
+
+    .socials {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+    }
+    .socials a {
+      text-decoration: none;
+      color: #0645ad;
+      padding: 6px 8px;
+      border-radius: 6px;
+      font-weight: 600;
     }
 
     .content {
@@ -70,22 +92,17 @@
       justify-content: flex-start;
       text-align: left;
     }
+
     section { margin-bottom: 32px; max-width: var(--max-text-width); }
     h2 { font-size: 22px; margin: 0 0 16px; font-weight: 700; }
     ul li > a { font-weight: 700; }
     ul { padding-left: 0; list-style: none; margin: 8px 0 0; }
-    li em {
-      display: block;
-      color: #555;
-      font-size: 0.95em;
-      margin-top: 2px;
-    }
+    li em { display: block; color: #555; font-size: 0.95em; margin-top: 2px; }
     details { margin-top: 6px; color: #555; text-align: left; max-width: 600px; }
     summary { cursor: pointer; font-weight: 500; }
 
     p { margin: 0 0 1em; text-indent: 0; }
     p, li { -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto; }
-
 
     footer { margin-top: 24px; color: #777; font-size: 14px; text-align: center; }
 
@@ -94,18 +111,28 @@
     }
     @media (max-width: 768px) {
       .container { grid-template-columns: 1fr; }
-      .photo, .content { padding: 24px 18px; }
-      .photo img { width: 100%; height: auto; max-height: none; }
+      .photo {
+        position: static;
+        padding: 24px 18px;
+        align-items: flex-start;
+      }
+      .photo img { width: 100%; max-width: none; }
+      .socials { justify-content: flex-start; }
     }
   </style>
 </head>
 <body>
   <div class="outer">
     <div class="container">
-      <!-- LEFT: NAME + PHOTO -->
+      <!-- LEFT: NAME + PHOTO + SOCIALS (sticky) -->
       <div class="photo">
         <h1>Inbar Amit</h1>
         <img src="images/Inbar_photo.jpg" alt="Portrait of Inbar Amit">
+        <div class="socials" aria-label="Social links">
+          <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener">Twitter</a>
+          <a href="https://www.linkedin.com/in/yourhandle" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="mailto:you@example.com">Email</a>
+        </div>
       </div>
 
       <!-- RIGHT: CONTENT -->
@@ -216,3 +243,4 @@ networks without generating negative externalities for untargeted students.
   </script>
 </body>
 </html>
+
