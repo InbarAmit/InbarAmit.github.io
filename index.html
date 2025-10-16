@@ -4,11 +4,9 @@
   <title>Inbar Amit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    /* Computer Modern (CMU Serif) webfont */
-    /* --- Sizing variables --- */
     :root {
-      --outer-side-margin: 1in; /* ≈3 inch margins on left/right edges */
-      --inner-padding: 1in;     /* ≈1 inch inner padding in each column */
+      --outer-side-margin: 1in;
+      --inner-padding: 1in;
       --max-text-width: 45ch;
     }
 
@@ -21,15 +19,13 @@
     a { color: #0645ad; text-decoration: none; }
     a:hover { text-decoration: underline; }
 
-    /* Outer container with fixed physical margins */
     .outer {
       display: flex;
       justify-content: center;
       padding-inline: var(--outer-side-margin);
-      padding-block-start: 1in; /* top offset for both columns */
+      padding-block-start: 1in;
     }
 
-    /* Two columns */
     .container {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -37,60 +33,45 @@
       width: 100%;
     }
 
-    /* Left: name + photo */
     .photo {
-       position: sticky;
+      position: sticky;
       background: #fff;
       padding: 0;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      justify-content: flex-start; /* align to top */
+      justify-content: flex-start;
       text-align: left;
       gap: 16px;
-      /* Enable container query units so we can size the image to ~50% of this column */
-      container-type: size;
     }
     .photo h1 {
       margin: 0 0 8px;
       font-size: 28px;
-      text-align: center;   /* center the name within the left column */
-      align-self: stretch;  /* ensure it spans full column width in flex layout */
+      text-align: center;
+      align-self: stretch;
     }
 
-    /* Image sizing: half-size with aspect ratio preserved */
+    /* Stable image sizing: fixed visual size on desktop, responsive on small screens */
     .photo img {
-  display: block;
-  width: 200px;      /* fixed visual size */
-  height: auto;
-  max-width: 100%;
-  align-self: center;
-  margin-inline: auto;
-}
-    /* Enhanced: if container query units are supported, also cap by half the column height */
-    @supports (width: 1cqw) {
-      .photo img {
-        width: auto;                 /* let max-* constraints decide */
-        height: auto;                /* keep intrinsic ratio */
-        max-inline-size: 50cqw;      /* ≤ 50% of column width */
-        max-block-size: 50cqh;       /* ≤ 50% of column height */
-        object-fit: contain;         /* fit within those bounds without cropping */
-      }
+      display: block;
+      width: 200px;
+      height: auto;
+      max-width: 100%;
+      align-self: center;
+      margin-inline: auto;
     }
 
-    /* Right: content */
     .content {
       background: #fff;
       padding: 0;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      justify-content: flex-start; /* align to top */
+      justify-content: flex-start;
       text-align: left;
     }
     section { margin-bottom: 32px; max-width: var(--max-text-width); }
     h2 { font-size: 22px; margin: 0 0 16px; font-weight: 700; }
-    /* Bold titles in lists */
     ul li > a { font-weight: 700; }
     ul { padding-left: 0; list-style: none; margin: 8px 0 0; }
     li em {
@@ -102,26 +83,18 @@
     details { margin-top: 6px; color: #555; text-align: left; max-width: 600px; }
     summary { cursor: pointer; font-weight: 500; }
 
-    /* LaTeX-like paragraphing */
     p { margin: 0 0 1em; text-indent: 0; }
-    /* removed first-paragraph indentation */
-
-    /* Hyphenation like TeX */
     p, li { -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto; }
 
-    /* Typewriter / code look (if needed later) */
-    code, kbd, samp, pre { font-family: 'CMU Typewriter Text', 'CMU Typewriter', 'Computer Modern Typewriter', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.95em; }
 
     footer { margin-top: 24px; color: #777; font-size: 14px; text-align: center; }
 
-    /* Mobile / smaller screens */
     @media (max-width: 1200px) {
-      .outer { padding-inline: 40px; } /* keep things readable */
+      .outer { padding-inline: 40px; }
     }
     @media (max-width: 768px) {
       .container { grid-template-columns: 1fr; }
       .photo, .content { padding: 24px 18px; }
-      .photo { container-type: normal; }
       .photo img { width: 100%; height: auto; max-height: none; }
     }
   </style>
@@ -243,4 +216,3 @@ networks without generating negative externalities for untargeted students.
   </script>
 </body>
 </html>
-
