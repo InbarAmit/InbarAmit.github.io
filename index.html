@@ -94,9 +94,14 @@
   text-decoration: underline;
 }
 
-   details > *:not(summary):first-child {
-  margin-top: 0.8em;
+details[open] > *:not(summary):first-child {
+  padding-top: 0.8em;
 }
+
+    details > summary {
+  padding-left: 1.2em;
+}
+
 
 
    
