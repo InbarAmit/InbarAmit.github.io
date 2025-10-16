@@ -60,13 +60,13 @@
 
     /* Image sizing: half-size with aspect ratio preserved */
     .photo img {
-      display: block;
-      width: 40%;         /* half the column's content width */
-      height: auto;       /* preserve aspect ratio */
-      max-width: 100%;    /* never overflow */
-      align-self: center; /* center horizontally in the flex column */
-      margin-inline: auto;/* fallback centering */
-    }
+  display: block;
+  width: 200px;      /* fixed visual size */
+  height: auto;
+  max-width: 100%;
+  align-self: center;
+  margin-inline: auto;
+}
     /* Enhanced: if container query units are supported, also cap by half the column height */
     @supports (width: 1cqw) {
       .photo img {
