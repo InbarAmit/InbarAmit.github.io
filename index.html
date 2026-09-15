@@ -8,10 +8,14 @@
   <meta name="description" content="Inbar Amit is an applied microeconomist focused on labor, education, and development economics. DPhil candidate at Oxford and Research Scholar at IFS." />
   <style>
     :root {
-      --main-font: Georgia, 'Times New Roman', Times, 'Palatino Linotype', 'Book Antiqua', serif;
-      --font-size: 17px;
-      --line-height: 1.55;
-    --bg: #f9f7f3;
+      --main-font: Inter, Aptos, Calibri, 'Segoe UI', Arial, sans-serif;
+      --font-size: 16.5px;
+      --line-height: 1.65;
+    --bg: #ffffff;
+      --main-color: #222222;
+      --accent: #002147;
+      --muted: #667085;
+      --rule: #e7e9ec;
     }
     html, body {
       height: 100%;
@@ -23,8 +27,8 @@
       color: var(--main-color);
     }
     *, *::before, *::after { font-family: inherit; }
-    a { color: #0645ad; text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    a { color: var(--accent); text-decoration: none; transition: color 0.15s ease; }
+    a:hover { color: #174a7c; text-decoration: underline; text-underline-offset: 3px; }
 
     body {
       height: 100vh;
@@ -50,16 +54,29 @@
       box-sizing: border-box;
     }
     .left h1 {
-      margin: 0 0 12px;
-      font-size: 28px;
+      margin: 0 0 18px;
+      font-size: 30px;
+      line-height: 1.15;
+      font-weight: 650;
+      letter-spacing: -0.02em;
     }
     .left img {
-      width: 100%;
-      max-width: 300px;
-      height: auto;
+      width: 235px;
+      height: 235px;
+      max-width: 78vw;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 50%;
+      border: 1px solid var(--rule);
       display: block;
-      margin-bottom: 0;
     }
+    .profile-subtitle {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 0.92em;
+      line-height: 1.45;
+    }
+
     .right {
   /* --- Your layout styles --- */
   flex: 1;
@@ -68,7 +85,7 @@
   box-sizing: border-box;
   padding-top: 1.5em;
   margin-left: 0.5in;
-  max-width: 60ch;
+  max-width: 68ch;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -78,20 +95,20 @@
 
   /* --- Firefox scrollbar styles --- */
   scrollbar-width: thin;                         /* Makes scrollbar thinner */
-  scrollbar-color: auto #f9f7f3;                 /* Thumb: auto (default), Track: your bg */
+  scrollbar-color: auto #ffffff;                 /* Thumb: auto (default), Track: your bg */
 }
 
 /* --- Chrome, Edge, Safari scrollbar styles --- */
 .right::-webkit-scrollbar {
   width: 10px;
-  background: #f9f7f3;  /* Track: your site background */
+  background: #ffffff;  /* Track: site background */
 }
 .right::-webkit-scrollbar-thumb {
   background: initial;   /* Browser default (grey) */
   border-radius: 6px;
 }
     .right li {
-  margin-bottom: 3em;
+  margin-bottom: 2.15em;
 }
 
     .socials {
@@ -104,7 +121,7 @@
 }
 
 .socials a {
-  color: #0645ad;
+  color: var(--accent);
   text-decoration: none;
   word-break: break-all;
 }
@@ -118,11 +135,39 @@
 
    
     
-    h2 { font-size: 22px; margin: 1.5em 0 1em; font-weight: 700; }
+    h2 {
+      font-size: 21px;
+      margin: 2.1em 0 1.1em;
+      padding-bottom: 0.42em;
+      border-bottom: 1px solid var(--rule);
+      font-weight: 650;
+      letter-spacing: -0.01em;
+    }
     ul { padding-left: 0; list-style: none; margin: 0 0 2em; }
-    li em { display: block; color: #555; font-size: 0.95em; margin-top: 2px; }
+    li em { display: block; color: var(--muted); font-size: 0.92em; margin-top: 3px; }
     p { margin: 0 0 0; }
-    footer { margin-top: 2em; color: #777; font-size: 14px; text-align: center; width: 100%; }
+    footer { margin-top: 3em; padding-bottom: 2em; color: var(--muted); font-size: 13px; text-align: center; width: 100%; }
+
+    #working-papers li > a { font-weight: 600; line-height: 1.45; }
+    details { margin-top: 0.45em; }
+    summary {
+      display: inline-block;
+      cursor: pointer;
+      color: var(--accent);
+      font-size: 0.9em;
+      font-weight: 600;
+      user-select: none;
+    }
+    summary::marker, summary::-webkit-details-marker { display: none; }
+    summary::after { content: " +"; }
+    details[open] summary::after { content: " −"; }
+    details > p {
+      margin-top: 0.8em !important;
+      padding: 0.15em 0 0.15em 1em;
+      border-left: 2px solid var(--rule);
+      color: #3f4650;
+      font-size: 0.96em;
+    }
 
     @media (max-width: 1200px) {
       .right { margin-left: 0.5in; }
@@ -134,7 +179,11 @@
         margin-left: 0;
         padding-top: 1em;
       }
-      .right { height: auto; }
+      .main { height: auto; }
+      .left { padding: 1.75em 1.25em 0.5em; }
+      .left img { width: 180px; height: 180px; }
+      .right { height: auto; overflow-y: visible; padding: 0.5em 1.35em 2em; }
+      #about p:first-child { margin-top: 1.5em !important; }
     }
   </style>
 </head>
@@ -142,8 +191,9 @@
   <div class="main">
     <div class="left">
       <!-- LEFT: NAME + PHOTO + SOCIALS (sticky) -->
-        <h1  style="margin-top: 1em;" >Inbar Amit</h1>
+        <h1>Inbar Amit</h1>
        <img src="images/Inbar_photo.jpg" alt="Portrait of Inbar Amit">
+       <div class="profile-subtitle">DPhil Candidate · University of Oxford<br>Research Scholar · Institute for Fiscal Studies</div>
        <div class="socials">
   <div><strong>Email:</strong> <a href="mailto:inbar.amit@economics.ox.ac.uk">inbar.amit@economics.ox.ac.uk</a></div>
   <div><strong>X:</strong> <a href="https://x.com/InbarAmit1" target="_blank" rel="noopener">@InbarAmit1</a></div>
